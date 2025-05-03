@@ -1,22 +1,23 @@
 version: '3.8'
 
 services:
-  postgres:
+  db:
     image: postgres:15-alpine
     ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: addruser
-      POSTGRES_PASSWORD: addrpass
-      POSTGRES_DB: addrdb
+      - "5433:5432"
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./src/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - address-matching-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U addruser -d addrdb"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   app:
     build:
@@ -25,11 +26,12 @@ services:
     volumes:
       - .:/app
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
-    environment:
-      DATABASE_URL: postgresql://addruser:addrpass@postgres:5432/addrdb
-      PYTHONPATH: /app
+    env_file:
+      - .env
+    networks:
+      - address-matching-network
     command: ["python", "-m", "src.pipeline.orchestrator"]
 
   api:
@@ -41,12 +43,30 @@ services:
     volumes:
       - .:/app
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
-    environment:
-      DATABASE_URL: postgresql://addruser:addrpass@postgres:5432/addrdb
-      PYTHONPATH: /app
+    env_file:
+      - .env
+    networks:
+      - address-matching-network
     command: ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--reload"]
+    
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - api
+    networks:
+      - address-matching-network
+    restart: unless-stopped
+
+networks:
+  address-matching-network:
+    driver: bridge
 
 volumes:
-  postgres_data:
+  postgres_data: 

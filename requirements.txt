@@ -1,0 +1,16 @@
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.25
+alembic==1.12.1
+pandas==2.1.4
+numpy==1.26.3
+openpyxl==3.1.2 
+usaddress==0.5.6
+rapidfuzz==3.6.1
+jellyfish==1.0.3 
+requests==2.31.0
+fastapi==0.109.2
+uvicorn==0.27.1
+pydantic==2.6.1
+python-dotenv==1.0.0
+tqdm==4.66.1
+pytest==7.4.3 

@@ -1,13 +1,9 @@
+# Scalable Address Matching Pipeline
 ![068665FA-C609-404D-ABDD-3C241C93B5D4](https://github.com/user-attachments/assets/ff3ecd43-6728-48a6-8324-6cf0206dbe07)
 
 ![5F5D9440-8CC5-442F-8FDC-6B4B73BDF9C8](https://github.com/user-attachments/assets/8d1656bb-1107-4394-a881-bf629d39807a)
 
 ![90B95919-1B70-4F15-9AF4-014C3FDB90AF](https://github.com/user-attachments/assets/50979eb9-1b87-4065-8eaf-8e04f6d02709)
-
-
-
-
-# Scalable Address Matching Pipeline
 
 ## What We Set Out to Do
 
@@ -20,6 +16,13 @@ Our goal was to build a system that could:
 - Provide an API for real-time address matching
 
 ## What We've Accomplished
+![image](https://github.com/user-attachments/assets/ead0056b-8a48-47e6-b179-93b061387569)
+![C7BCDB64-5D75-4AC5-A834-ABADCEF4F7B9](https://github.com/user-attachments/assets/c4770e6e-89cd-417a-b593-573b80331d96)
+![0F6B972A-36D1-423A-A514-95253304AFC9](https://github.com/user-attachments/assets/27dedaff-f7c3-48e8-9dc2-2ab43f6ba2a3)
+![998E1E8D-1E48-4C0D-AEAB-AB9B27009D02](https://github.com/user-attachments/assets/4c19155a-0b91-4e90-8430-00fade7f712d)
+![9980A0EB-54C8-4897-BEE3-72C8B9C9E97C](https://github.com/user-attachments/assets/337594b0-61d3-4da0-8ae6-cdcdaeada4df)
+
+
 
 So far, we've built a complete end-to-end solution that:
 - Ingests address data from Excel/CSV files into a PostgreSQL database
